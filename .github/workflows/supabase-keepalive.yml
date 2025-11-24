@@ -1,0 +1,20 @@
+name: Supabase Keep Alive
+
+on:
+  schedule:
+    # Runs every 2 days at 04:00 UTC. Adjust if you like.
+    - cron: '0 4 */2 * *'
+  workflow_dispatch:        # allow manual run from Actions tab
+
+jobs:
+  ping-supabase:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Call Supabase Keep-Alive Endpoint
+        run: |
+          curl -X GET \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            "https://${{ secrets.SUPABASE_PROJECT_REF }}.supabase.co/rest/v1/employees?select=id&limit=1"
+
