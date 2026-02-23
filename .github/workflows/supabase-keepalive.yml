@@ -18,5 +18,5 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             "${{ secrets.SUPABASE_URL }}/rest/v1/employees?select=id&limit=1"
 
-      - name: Prevent GitHub Actions Suspension
-        uses: gautamkrishnar/keepalive-workflow@v2
+    - name: Prevent GitHub Actions Suspension
+  uses: gautamkrishnar/keepalive-workflow@v2
