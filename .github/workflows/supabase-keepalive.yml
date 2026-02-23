@@ -4,7 +4,7 @@ on:
   schedule:
     # Runs every 2 days at 04:00 UTC.
     - cron: '0 4 */2 * *'
-  workflow_dispatch:        # allows manual run from Actions tab
+  workflow_dispatch:
 
 jobs:
   ping-supabase:
@@ -17,6 +17,3 @@ jobs:
             -H "apikey: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             "${{ secrets.SUPABASE_URL }}/rest/v1/employees?select=id&limit=1"
-
-    - name: Prevent GitHub Actions Suspension
-  uses: gautamkrishnar/keepalive-workflow@v2
